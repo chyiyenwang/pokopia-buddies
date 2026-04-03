@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum IdealHabitat {
+  BRIGHT
+  COOL
+  DARK
+  DRY
+  HUMID
+  WARM
+  NA
+}
+
+enum Type {
+  NORMAL
+  FIRE
+  WATER
+  GRASS
+  ELECTRIC
+  ICE
+  FIGHTING
+  POISON
+  GROUND
+  FLYING
+  PSYCHIC
+  BUG
+  ROCK
+  GHOST
+  DRAGON
+  STEEL
+  DARK
+  FAIRY
+}
+
+enum Specialty {
+  APPRAISE
+  BUILD
+  BULLDOZE
+  BURN
+  CHOP
+  COLLECT
+  DJ
+  DREAMISLAND
+  EAT
+  ENGINEER
+  EXPLODE
+  FLY
+  GATHER
+  GATHERHONEY
+  GENERATE
+  GROW
+  HYPE
+  ILLUMINATE
+  LITTER
+  PAINT
+  PARTY
+  RARIFY
+  RECYCLE
+  SEARCH
+  STORAGE
+  TELEPORT
+  TRADE
+  TRANSFORM
+  WATER
+  YAWN
+}
+
+enum Time {
+  MORNING
+  AFTERNOON
+  EVENING
+  NIGHT
+}
+
+enum Weather {
+  Sunny
+  Cloudy
+  Rainy
+}
+
+enum Flavor {
+  BITTER
+  DRY
+  NEUTRAL
+  NA
+  SOUR
+  SPICY
+  SWEET
+}
+
+model Pokemon {
+  id           String   @id @default(cuid())
+  name         String
+  idealHabitat String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  type      Type[]
+  specialty Specialty[]
+  habitat   PokemonHabitat[]
+  time      Time[]
+  weather   Weather[]
+  flavor    Flavor
+}
+
+model Habitat {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  pokemon PokemonHabitat[]
+}
+
+model PokemonHabitat {
+  pokemonId String
+  habitatId String
+
+  pokemon Pokemon @relation(fields: [pokemonId], references: [id])
+  habitat Habitat @relation(fields: [habitatId], references: [id])
+
+  @@id([pokemonId, habitatId])
+}

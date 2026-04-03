@@ -1,0 +1,30 @@
+export enum IdealHabitat {
+  BRIGHT = "Bright",
+  COOL = "Cool",
+  DARK = "Dark",
+  DRY = "Dry",
+  HUMID = "Humid",
+  WARM = "Warm",
+  NA = "N/A",
+}
+
+export enum Type {
+  NORMAL = "Normal",
+  FIRE = "Fire",
+  WATER = "Water",
+  GRASS = "Grass",
+  ELECTRIC = "Electric",
+  ICE = "Ice",
+  FIGHTING = "Fighting",
+  POISON = "Poison",
+  GROUND = "Ground",
+  FLYING = "Flying",
+  PSYCHIC = "Psychic",
+  BUG = "Bug",
+  ROCK = "Rock",
+  GHOST = "Ghost",
+  DRAGON = "Dragon",
+  STEEL = "Steel",
+  DARK = "Dark",
+  FAIRY = "Fairy",
+}
